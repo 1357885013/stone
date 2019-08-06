@@ -2,7 +2,7 @@ package chap3;
 import stone.*;
 import java.io.FileNotFoundException;
 
-public class FileLexerRunner {
+public class FileLexerRunner {      //分割 选中文件的 “单词”
     public static void main(String[] args) throws ParseException {
         try {
             Lexer l = new Lexer(CodeDialog.file());

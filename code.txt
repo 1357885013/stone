@@ -1,0 +1,30 @@
+event=0
+odd=0
+i=1
+while i<10 {
+    if i%2==0{//event number
+        event=event+i
+    }else{
+        odd=odd+i
+    }
+    i=i+1
+}
+even+odd
+
+
+
+if i%2==0
+{
+    even =even+i
+}
+else
+{
+    odd=odd+i
+}
+
+
+if i%2==0{
+    even =even+i
+}else{
+    odd=odd+i
+}
