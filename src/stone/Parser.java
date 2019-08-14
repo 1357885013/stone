@@ -245,7 +245,7 @@ public class Parser {
 
         protected void parse(Lexer lexer, List<ASTree> res)
                 throws ParseException {
-            Token t = lexer.read();
+            Token t = lexer.read();//读一个token
             if (test(t)) {
                 ASTree leaf = factory.make(t);
                 res.add(leaf);

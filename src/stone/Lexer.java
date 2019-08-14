@@ -27,7 +27,7 @@ public class Lexer {
         hasMore = true;
         reader = new LineNumberReader(r);
     }
-
+//读一个token
     public Token read() throws ParseException {
         if (fillQueue(0))
             return queue.remove(0);
@@ -41,7 +41,7 @@ public class Lexer {
         else
             return Token.EOF;
     }
-
+//队列为空就在读一行
     private boolean fillQueue(int i) throws ParseException {
         while (i >= queue.size())
             if (hasMore)
@@ -50,7 +50,7 @@ public class Lexer {
                 return false;
         return true;
     }
-
+    //把一行里所有的token都添加到队列里
     protected void readLine() throws ParseException {
         String line;
         try {
@@ -68,7 +68,7 @@ public class Lexer {
         int pos = 0;
         int endPos = line.length();
         while (pos < endPos) {      //不是一次把一行里的所有结果都匹配出来，而是一个一个的匹配
-            matcher.region(pos, endPos);
+            matcher.region(pos, endPos);  //核心语句
             if (matcher.lookingAt()) {
                 addToken(lineNo, matcher);
                 pos = matcher.end();
