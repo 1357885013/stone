@@ -6,6 +6,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /*
 词法分析器：
 token ：单词，字符串，数字，标示符 这些东西用单词描述有些不妥，所以用token描述，即程序的最小单元
@@ -27,7 +28,8 @@ public class Lexer {
         hasMore = true;
         reader = new LineNumberReader(r);
     }
-//读一个token
+
+    //读一个token
     public Token read() throws ParseException {
         if (fillQueue(0))
             return queue.remove(0);
@@ -41,7 +43,8 @@ public class Lexer {
         else
             return Token.EOF;
     }
-//队列为空就在读一行
+
+    //队列为空就再读一行
     private boolean fillQueue(int i) throws ParseException {
         while (i >= queue.size())
             if (hasMore)
@@ -50,6 +53,7 @@ public class Lexer {
                 return false;
         return true;
     }
+
     //把一行里所有的token都添加到队列里
     protected void readLine() throws ParseException {
         String line;
@@ -68,8 +72,8 @@ public class Lexer {
         int pos = 0;
         int endPos = line.length();
         while (pos < endPos) {      //不是一次把一行里的所有结果都匹配出来，而是一个一个的匹配
-            matcher.region(pos, endPos);  //核心语句
-            if (matcher.lookingAt()) {
+            matcher.region(pos, endPos);  //核心语句, 设置搜索区域
+            if (matcher.lookingAt()) { // 从区域的头部开始查找匹配,不用匹配全部
                 addToken(lineNo, matcher);
                 pos = matcher.end();
             } else
@@ -78,11 +82,13 @@ public class Lexer {
         queue.add(new IdToken(lineNo, Token.EOL));
     }
 
+    // 把正则匹配到的 token 添加到queue
     protected void addToken(int lineNo, Matcher matcher) {
         String m = matcher.group(1);
         if (m != null) // if not a space
             if (matcher.group(2) == null) { // if not a comment
                 Token token;
+                // 区分 识别到的是什么token
                 if (matcher.group(3) != null)
                     token = new NumToken(lineNo, Integer.parseInt(m));
                 else if (matcher.group(4) != null)

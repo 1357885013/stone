@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>showFA</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <canvas id="canvas" width="800px" height="1000px">
+    </canvas>
+</div>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    testCtx(ctx)
+
+    function testCtx(ctx) {
+        function getRandom(s, e) {
+            return Math.floor((Math.random() * e) + s);
+        }
+
+        let c1 = {x: getRandom(50, 200), y: getRandom(50, 200), r: 30, title: "1"};
+        let c2 = {x: getRandom(50, 200), y: getRandom(50, 200), r: 30, title: "2"};
+        clearCanvas(ctx);
+        drawCircle(ctx, c1);
+        drawCircle(ctx, c2);
+        drawArrowLine(ctx, c1, c2, "5");
+        drawFarArrowLine(ctx, c1, c2, "3");
+        drawSelfArrowLine(ctx, c1, "2");
+        drawDoubleArrow(ctx, c1);
+    }
+
+    function initCtx(ctx) {
+        ctx.font = "20px Georgia";
+    }
+
+    function drawCircle(ctx, circle) {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+        ctx.stroke();
+        let title = circle.title === undefined ? "" : circle.title;
+        let _x = circle.x - ctx.measureText(title).width / 2;
+        ctx.fillText(title, _x, circle.y);
+    }
+
+    function drawArrowLine(ctx, from, to, title = "") {
+        let dis = Math.sqrt(Math.pow(from.x - to.x, 2) + Math.pow(from.y - to.y, 2));
+        let _cos = (to.x - from.x) / dis;
+        let _sin = (to.y - from.y) / dis;
+        let startx = from.x + from.r * _cos;
+        let starty = from.y + from.r * _sin;
+        let endx = to.x - to.r * _cos;
+        let endy = to.y - to.r * _sin;
+        drawLine(ctx, startx, starty, endx, endy);
+        drawArrow(ctx, startx, starty, endx, endy);
+        ctx.fillText(title, (startx + endx) / 2, (starty + endy) / 2);
+    }
+
+    function drawFarArrowLine(ctx, from, to, title = "", h = 20, dir = 1,) {
+        let dis = Math.sqrt(Math.pow(from.x - to.x, 2) + Math.pow(from.y - to.y, 2));
+        let _cos = (to.x - from.x) / dis;
+        //note: y
+        let _sin = (to.y - from.y) / dis;
+        let sx = from.x + dir * from.r * _sin;
+        let sy = from.y - dir * from.r * _cos;
+        let ax = from.x + dir * (from.r + h) * _sin;
+        let ay = from.y - dir * (from.r + h) * _cos;
+        let bx = to.x + dir * (to.r + h) * _sin;
+        let by = to.y - dir * (to.r + h) * _cos;
+        let ex = to.x + dir * to.r * _sin;
+        let ey = to.y - dir * to.r * _cos;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        drawArrow(ctx, bx, by, ex, ey);
+        ctx.fillText(title, (ax + bx) / 2, (ay + by) / 2);
+    }
+
+    function drawSelfArrowLine(ctx, c, title = "", dir = 1, h = 15, deg = 45) {
+        let rad = 2 * Math.PI / 360 * deg;
+        let sx = c.x - Math.sin(rad) * c.r;
+        let sy = c.y - dir * Math.cos(rad) * c.r;
+        let ex = c.x + Math.sin(rad) * c.r;
+        let ey = sy;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(sx, sy - h)
+        ctx.lineTo(ex, sy - h);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        drawArrow(ctx, ex, sy - h, ex, ey);
+        ctx.fillText(title, (sx + ex) / 2, (sy - h + ey - h) / 2 - 5);
+    }
+
+    function clearCanvas(ctx) {
+        ctx.clearRect(0, 0, 2000, 2000);
+    }
+
+    function drawLine(ctx, x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
+    function drawArrow(ctx, x1, y1, x2, y2, deg = 45, len = 10) {
+        let rad = 2 * Math.PI / 360 * deg;
+        let dis = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        let _cos = (x2 - x1) / dis;
+        let _sin = (y2 - y1) / dis;
+        let rad1 = 2 * Math.PI / 360 * (90 - deg) - Math.asin(_sin);
+        let a1x, a1y, a2x, a2y;
+        if (x1 > x2) {
+            a1x = x2 + Math.sin(rad1) * len;
+            a1y = y2 - Math.cos(rad1) * len;
+            a2x = x2 + Math.cos(rad1) * len;
+            a2y = y2 + Math.sin(rad1) * len;
+        } else {
+            a1x = x2 - Math.sin(rad1) * len;
+            a1y = y2 - Math.cos(rad1) * len;
+            a2x = x2 - Math.cos(rad1) * len;
+            a2y = y2 + Math.sin(rad1) * len;
+        }
+        drawLine(ctx, x2, y2, a1x, a1y);
+        drawLine(ctx, x2, y2, a2x, a2y);
+    }
+
+    //画双箭头 =>
+    function drawDoubleArrow(ctx, circle, len = 12) {
+        let x = circle.x - circle.r;
+        let y = circle.y;
+        drawLine(ctx, x, y, x - len, y - len);
+        drawLine(ctx, x, y, x - len, y + len);
+        drawLine(ctx, x - len / 2, y - len / 2, x - len * 2, y - len / 2);
+        drawLine(ctx, x - len / 2, y + len / 2, x - len * 2, y + len / 2);
+    }
+
+</script>
+</body>
+</html>
