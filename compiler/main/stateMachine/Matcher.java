@@ -52,11 +52,27 @@ public class Matcher {
         if (this.end == -1)
             this.end = input.length() - 1;
         boolean crossEnd = false;
+        Set<State> temp;
 
         char input;
         while (loc <= this.end) {
+            temp = null;
             input = this.input.charAt(loc);
             Set<State> nextStateSet = trans.get(nowState, String.valueOf(input));
+            if (trans.get(nowState) != null) {
+                if (nextStateSet == null)
+                    //找  .   [^..]  ^ $
+                    for (String in : trans.get(nowState).keySet()) {
+                        if (in.equals("_."))
+                            temp = trans.get(nowState, in);
+                        if (in.charAt(0) == '^' && in.charAt(1) != input) {
+                            nextStateSet = trans.get(nowState, in);
+                            break;
+                        }
+                    }
+                if (nextStateSet == null) nextStateSet = temp;
+            }
+
             // does not have next state
             if (nextStateSet == null || nextStateSet.size() == 0) {
                 return crossEnd;

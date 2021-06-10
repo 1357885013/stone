@@ -12,17 +12,21 @@ public class Pattern {
         Pattern pattern;
 
 //        pattern = Pattern.compile("((//.*?(\\n|$))|(/\\*.*?\\*/))|([a-zA-Z_][a-zA-Z0-9_]*)|(\\d+)|(\"((\\\\\")|.)*?\")|(\\+\\+|--|\\+=|-\\+|\\*=|/=|&&|\\|\\||!=|==|>=|<=)|(\\{|\\}|\\[|\\]|\\(|\\)|\\+|\\-|\\*|/|=|&|\\||!|:|;|,|<|>|'|\\\"|\\.)|(\\b)");
-        pattern = Pattern.compile("(\\+\\+|--|\\+=|-\\+|\\*=|/=|&&|\\|\\||!=|==|>=|<=)|(\\{|\\}|\\[|\\]|\\(|\\)|\\+|\\-|\\*|/|=|&|\\||!|:|;|,|<|>|'|\\\"|\\.)");
+//        pattern = Pattern.compile("(\\+\\+|--|\\+=|-\\+|\\*=|/=|&&|\\|\\||!=|==|>=|<=)|(\\{|\\}|\\[|\\]|\\(|\\)|\\+|\\-|\\*|/|=|&|\\||!|:|;|,|<|>|'|\\\"|\\.)");
 //        pattern = Pattern.compile("--|\\+=|-\\+|\\*=|/=|&&|\\|\\||!=|==|>=|<=|\\{|\\}|\\[|\\]|\\(|\\)|\\+|\\-|\\*|/|=|&|\\||!|:|;|,|<|>|'|\\\"|\\.");
 //        pattern = Pattern.compile("a|b|c|aA|bB|cC");
 //        pattern = Pattern.compile("(\\+\\+|--)|(\\+=|-\\+|\\*=)");
 //        pattern = Pattern.compile("([ab][AB]*)");  // end上有自旋
+        // todo: 有错误
 //        pattern = Pattern.compile("//.*?(\\n|$)");
 //        pattern = Pattern.compile("([az][az09]*)|(d+)");
 //        pattern = Pattern.compile("b*?ca");
 //        pattern = Pattern.compile("ab*?c");
 //        pattern = Pattern.compile("ab*(abc)|(ade)");
 //        pattern = Pattern.compile("cab*?");
+        // todo: 有错误
+//        pattern = Pattern.compile("ca(.|a)*");
+//        pattern = Pattern.compile("(ca.b)|(.d.s)");
 //        pattern = Pattern.compile("(a|b|[ccc][as]|d)");
 
 
@@ -52,13 +56,30 @@ public class Pattern {
     public static Pattern compile(String regex) {
         Pattern pattern = new Pattern();
         pattern.parse(regex);
-        print(pattern.trans);
-        pattern.NFA2DFA();
-        print(pattern.trans);
+        print(pattern.trans, "DFA");
+        // 先去空边
+        pattern.deleteEmptyInput();
+        print(pattern.trans, "去空边后");
+        // 先去空边
+        // 顺序处理 . 和 ^[  (所有输入都处理了,再处理自己)
+        pattern.NFA2DFA1();
+        print(pattern.trans, ". and [^ 后");
+        // 合并同input边, 不用考虑 . 和 ^[
+        pattern.NFA2DFA2();
+        print(pattern.trans, "合并状态后");
         return pattern;
     }
 
-    private void NFA2DFA() {
+    private boolean isIntersect(String left, String right) {
+        if (left.equals(right) || left.equals("_.") || right.equals("_.")) return true;
+        if (left.charAt(0) == '^' && right.charAt(0) == '^') return false;
+        if (left.charAt(0) == '^' && right.length() == 1 && right.charAt(0) == left.charAt(1)) return false;
+        if (right.charAt(0) == '^' && left.length() == 1 && left.charAt(0) == right.charAt(1)) return false;
+        System.out.println("error in compare for intersect:  " + left + "  " + right);
+        return false;
+    }
+
+    private void deleteEmptyInput() {
         boolean end;
         do {
             end = true;
@@ -69,44 +90,7 @@ public class Pattern {
                 Set<String> inputToStatesKeys = new HashSet<>(inputToStates.keySet());
                 for (String input : inputToStatesKeys) {
                     Set<State> toState = inputToStates.get(input);
-                    // 如果一个状态一个输入有多个输出
-                    if (toState.size() > 1) {
-                        // 合成个新的状态
-                        State newState = State.build(stateIndex++, toState);
-                        // 将这多个状态替换成新状态
-                        trans.delete(inState, input);
-                        trans.add(inState, input, newState);
-
-                        // 转移
-                        for (State eachState : new HashSet<>(toState)) {
-                            if (trans.get(eachState) != null)
-                                // 转移输出
-                                for (String in : trans.get(eachState).keySet()) {
-                                    for (State state1 : trans.get(eachState).get(in)) {
-                                        // 空自旋不用转移
-//                                        if (!(toState.contains(state1) && in.equals("_@")))
-                                        trans.add(newState, in, state1);
-                                    }
-                                }
-                        }
-                        // 转移输入 , 不用转移输入,  会死循环
-//                            Set<State> toStates11;
-//                            for (State state11 : trans.keySet()) {
-//                                for (String input11 : trans.get(state11).keySet()) {
-//                                    toStates11 = trans.get(state11).get(input11);
-//                                    if (toStates11.contains(eachState)) {
-//                                        trans.add(state11, input11, newState);
-//                                        trans.delete(state11, input11, eachState);
-//                                    }
-//                                }
-//                            }
-                        // 删除
-                        for (State state : toState) {
-                            trans.delete(state);
-                        }
-                        end = false;
-                        break out;
-                    } else if (input.equals("_@")) {
+                    if (input.equals("_@")) {
                         // 把左右两个状态合成个新的状态
                         // todo: 左右groupIndex 合成到一个state里的情况
                         State newState = State.build(stateIndex++, inState, toState);
@@ -165,6 +149,119 @@ public class Pattern {
                         for (State state : rightStateSet) {
                             trans.delete(state);
                         }
+                        end = false;
+                        break out;
+                    }
+//                    print(trans, inState + "  NFA to DFA  " + input);
+                }
+            }
+        } while (!end);
+    }
+
+    private void NFA2DFA1() {
+        Map<State, HashSet<State>> allInStates = new HashMap<>();
+        Map<State, Boolean> resolved = new HashMap<>();
+        State nowState = null;
+        // 初始化
+        for (State state : trans.keySet()) {
+            if (state.isStart())
+                nowState = state;
+            else
+                allInStates.put(state, new HashSet<State>());
+            resolved.put(state, false);
+        }
+
+        // 统计指向某状态的边的数量
+        for (State state : trans.keySet()) {
+            for (String input : trans.get(state).keySet()) {
+                for (State toState : trans.get(state, input)) {
+                    HashSet<State> states = allInStates.get(toState);
+                    // 结束状态只有输入没有输出
+                    if (states != null)
+                        states.add(state);
+                }
+            }
+        }
+
+        do {
+
+            for (String input : trans.get(nowState).keySet()) {
+                // 是欠处理的边不?
+                if (input.equals("_.") || input.charAt(0) == '^') {
+                    for (String rightInput : trans.get(nowState).keySet()) {
+                        // 如果相交
+                        if (isIntersect(input, rightInput))
+                            // 全部挨个转移
+                            for (State leftState : trans.get(nowState, input)) {
+                                // 是否转移成功
+                                trans.add(nowState, rightInput, leftState);
+                            }
+                    }
+                }
+            }
+            resolved.put(nowState, true);
+            State temp = null;
+            //删除allInStates的同时 寻找下一个所有边都处理的状态
+            for (State state : allInStates.keySet()) {
+                allInStates.get(state).remove(nowState);
+                if (allInStates.get(state).isEmpty() && temp == null)
+                    temp = state;
+            }
+            if (temp != null)
+                allInStates.remove(temp);
+            nowState = temp;
+
+        } while (nowState != null);
+        // 处理失败
+        if (resolved.values().contains(false))
+            System.out.println("有边没被处理, 在. 和 [^] 阶段");
+    }
+
+    private String getKeyOfStates(Set<State> states) {
+        return Arrays.toString(states.stream().map(State::getIndex).sorted().toArray(Integer[]::new));
+    }
+
+    private void NFA2DFA2() {
+        boolean end;
+        Map<String, State> cache = new HashMap<>();
+        do {
+            end = true;
+            Set<State> transKeys = new HashSet<>(trans.keySet());
+            out:
+            for (State inState : transKeys) {
+                Map<String, Set<State>> inputToStates = trans.get(inState);
+                Set<String> inputToStatesKeys = new HashSet<>(inputToStates.keySet());
+                for (String input : inputToStatesKeys) {
+                    Set<State> oldStates = inputToStates.get(input);
+                    // 如果一个状态一个输入有多个输出
+                    if (oldStates.size() > 1) {
+                        // 合成个新的状态
+                        // todo: 可能已经有相同的集合转过了
+                        State newState;
+                        String oldStateKey = getKeyOfStates(oldStates);
+                        if (cache.containsKey(oldStateKey))
+                            newState = cache.get(oldStateKey);
+                        else {
+                            newState = State.build(stateIndex++, oldStates);
+                            cache.put(oldStateKey, newState);
+                        }
+                        // 将这多个状态替换成新状态
+                        trans.delete(inState, input);
+                        trans.add(inState, input, newState);
+
+                        // 复制旧状态上的输出到新状态上
+                        for (State oldState : new HashSet<>(oldStates)) {
+                            if (trans.get(oldState) != null)
+                                // 转移输出
+                                for (String in : trans.get(oldState).keySet()) {
+                                    trans.add(newState, in, trans.get(oldState, in));
+                                }
+                        }
+                        //  不用转移输入,  会死循环, 不删除原状态, 该去原来还去原来
+                        // 删除
+//                        for (State state : oldStates) {
+//                            trans.delete(state);
+//                        }
                         end = false;
                         break out;
                     }

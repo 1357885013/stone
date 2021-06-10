@@ -10,7 +10,7 @@ public class Test {
     private static Pattern pattern = Pattern.compile(regexPat);
 
     public static void main(String[] args) {
-        String input = "+= ++ -- = * 1000 sadf123 ";
+        String input = "+= ++ -- = * 1000 sadf123 /*123123*/";
         Matcher matcher = pattern.matcher(input);
 //        matcher.useTransparentBounds(true).useAnchoringBounds(false);
         int pos = 0;

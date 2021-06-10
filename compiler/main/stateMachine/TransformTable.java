@@ -93,4 +93,12 @@ public class TransformTable {
     public void setStartState(State startState) {
         this.startState = startState;
     }
+
+    public void add(State state, Map<String, Set<State>> inputToStates) {
+        Map<String, Set<State>> inputs = trans.get(state);
+        if (inputs == null)
+            trans.put(state, inputToStates);
+        else
+            trans.get(state).putAll(inputs);
+    }
 }
