@@ -23,6 +23,9 @@ public class Matcher {
         this.input = input;
         this.trans = trans;
     }
+    public Integer[] getGroups(){
+        return groups.keySet().toArray(new Integer[]{});
+    }
 
     public String group(int index) {
         int[] locs = groups.get(index);

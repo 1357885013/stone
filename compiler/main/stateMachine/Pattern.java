@@ -7,6 +7,7 @@ public class Pattern {
     private TransformTable trans;
 
     private int stateIndex = 0;
+    private String regex;
 
     public static void main(String[] args) {
         Pattern pattern;
@@ -55,18 +56,19 @@ public class Pattern {
 
     public static Pattern compile(String regex) {
         Pattern pattern = new Pattern();
+        pattern.regex = regex;
         pattern.parse(regex);
-        print(pattern.trans, "DFA");
+//        print(pattern.trans, "DFA");
         // 先去空边
         pattern.deleteEmptyInput();
-        print(pattern.trans, "去空边后");
+//        print(pattern.trans, "去空边后");
         // 先去空边
         // 顺序处理 . 和 ^[  (所有输入都处理了,再处理自己)
         pattern.NFA2DFA1();
-        print(pattern.trans, ". and [^ 后");
+//        print(pattern.trans, ". and [^ 后");
         // 合并同input边, 不用考虑 . 和 ^[
         pattern.NFA2DFA2();
-        print(pattern.trans, "合并状态后");
+//        print(pattern.trans, "合并状态后");
         return pattern;
     }
 
@@ -184,21 +186,21 @@ public class Pattern {
         }
 
         do {
-
-            for (String input : trans.get(nowState).keySet()) {
-                // 是欠处理的边不?
-                if (input.equals("_.") || input.charAt(0) == '^') {
-                    for (String rightInput : trans.get(nowState).keySet()) {
-                        // 如果相交
-                        if (isIntersect(input, rightInput))
-                            // 全部挨个转移
-                            for (State leftState : trans.get(nowState, input)) {
-                                // 是否转移成功
-                                trans.add(nowState, rightInput, leftState);
-                            }
+            if (trans.get(nowState) != null)
+                for (String input : trans.get(nowState).keySet()) {
+                    // 是欠处理的边不?
+                    if (input.equals("_.") || input.charAt(0) == '^') {
+                        for (String rightInput : trans.get(nowState).keySet()) {
+                            // 如果相交
+                            if (isIntersect(input, rightInput))
+                                // 全部挨个转移
+                                for (State leftState : trans.get(nowState, input)) {
+                                    // 是否转移成功
+                                    trans.add(nowState, rightInput, leftState);
+                                }
+                        }
                     }
                 }
-            }
             resolved.put(nowState, true);
             State temp = null;
             //删除allInStates的同时 寻找下一个所有边都处理的状态
@@ -272,7 +274,7 @@ public class Pattern {
     }
 
     public void parse(String regex) {
-        System.out.println("------ " + regex);
+//        System.out.println("------ " + regex);
         // 初始化
         trans = new TransformTable(regex);
         int stateGroupIndex = 1;
@@ -637,5 +639,13 @@ public class Pattern {
         System.out.println("----");
         strings = pattern.resolveMBrace("-a-c-0-");
         strings.forEach(System.out::println);
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 }
