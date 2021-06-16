@@ -22,6 +22,8 @@ public class Pattern {
 //        pattern = Pattern.compile("//.*?(\\n|$)");
 //        pattern = Pattern.compile("([az][az09]*)|(d+)");
 //        pattern = Pattern.compile("b*?ca");
+        // pattern = Pattern.compile("b*?ca", true);
+        pattern = Pattern.compile("[^abc]", true);
 //        pattern = Pattern.compile("ab*?c");
 //        pattern = Pattern.compile("ab*(abc)|(ade)");
 //        pattern = Pattern.compile("cab*?");
@@ -55,20 +57,27 @@ public class Pattern {
     }
 
     public static Pattern compile(String regex) {
+        return compile(regex, false);
+    }
+
+    public static Pattern compile(String regex, boolean debug) {
         Pattern pattern = new Pattern();
         pattern.regex = regex;
         pattern.parse(regex);
-//        print(pattern.trans, "DFA");
+        if (debug)
+            print(pattern.trans, regex + "   " + "DFA");
         // 先去空边
         pattern.deleteEmptyInput();
-//        print(pattern.trans, "去空边后");
-        // 先去空边
-        // 顺序处理 . 和 ^[  (所有输入都处理了,再处理自己)
+        if (debug)
+            print(pattern.trans, regex + "   " + "去空边后");
+        // 顺序处理 . 和 ^[
         pattern.NFA2DFA1();
-//        print(pattern.trans, ". and [^ 后");
+        if (debug)
+            print(pattern.trans, regex + "   " + ". and [^ 后");
         // 合并同input边, 不用考虑 . 和 ^[
         pattern.NFA2DFA2();
-//        print(pattern.trans, "合并状态后");
+        if (debug)
+            print(pattern.trans, regex + "   " + "合并状态后");
         return pattern;
     }
 
@@ -91,66 +100,40 @@ public class Pattern {
                 Map<String, Set<State>> inputToStates = trans.get(inState);
                 Set<String> inputToStatesKeys = new HashSet<>(inputToStates.keySet());
                 for (String input : inputToStatesKeys) {
-                    Set<State> toState = inputToStates.get(input);
+                    Set<State> replaceStates = inputToStates.get(input);
                     if (input.equals("_@")) {
                         // 把左右两个状态合成个新的状态
                         // todo: 左右groupIndex 合成到一个state里的情况
-                        State newState = State.build(stateIndex++, inState, toState);
-
-                        State leftState = inState;
-                        Set<State> rightStateSet = toState;
+                        State newState = State.build(stateIndex++, inState, replaceStates);
 
                         // left : inState
                         // right : toState
 
-                        // 左右状态输入
-                        Set<State> toStates11;
+                        trans.delete(inState, "_@");
+                        // 用 新状态替换所有老状态 在 转换表里
+
+                        replaceStates.add(inState);
+
+                        for (State state11 : new HashSet<>(trans.keySet())) {
+                            if (replaceStates.contains(state11)) {
+                                trans.add(newState, trans.get(state11));
+                                trans.delete(state11);
+                            }
+                        }
+
                         for (State state11 : trans.keySet()) {
                             for (String input11 : trans.get(state11).keySet()) {
-                                toStates11 = trans.get(state11).get(input11);
-                                // 左状态输入
-                                if (toStates11.contains(leftState)) {
-                                    trans.add(state11, input11, newState);
-                                    trans.delete(state11, input11, leftState);
-                                }
-                                // 右状态输入
-                                if (toStates11.contains(leftState)) {
-                                    trans.add(state11, input11, newState);
-                                    trans.delete(state11, input11, leftState);
+                                Set<State> toSet = trans.get(state11, input11);
+                                for (State replaceState : replaceStates) {
+                                    if (toSet.contains(replaceState)) {
+                                        toSet.removeAll(replaceStates);
+                                        toSet.add(newState);
+                                        break;
+                                    }
                                 }
                             }
                         }
 
-                        // 左状态输出
-                        for (String leftInput : trans.get(leftState).keySet()) {
-                            Set<State> leftOutStates = trans.get(leftState).get(leftInput);
-                            for (State leftOutState : leftOutStates) {
-                                // 空自旋不用转移
-                                if (!((rightStateSet.contains(leftOutState) || leftOutState.equals(leftState)) && leftInput.equals("_@")))
-                                    trans.add(newState, leftInput, leftOutState);
-                            }
-                        }
-
-
-                        // 右状态输出
-                        for (State rightState : rightStateSet) {
-                            if (trans.get(rightState) != null)
-                                for (String rightInput : trans.get(rightState).keySet()) {
-                                    Set<State> rightOutStateSet = trans.get(rightState).get(rightInput);
-                                    if (rightOutStateSet != null)
-                                        for (State rightOutState : rightOutStateSet) {
-                                            // 空自旋不用转移
-                                            if (!((rightStateSet.contains(rightOutState) || rightOutState.equals(leftState)) && rightInput.equals("_@")))
-                                                trans.add(newState, rightInput, rightOutState);
-                                        }
-                                }
-                        }
-
-                        // 删除
-                        trans.delete(leftState);
-                        for (State state : rightStateSet) {
-                            trans.delete(state);
-                        }
                         end = false;
                         break out;
                     }
@@ -161,6 +144,7 @@ public class Pattern {
     }
 
     private void NFA2DFA1() {
+        // (所有输入都处理了,再处理自己)
         Map<State, HashSet<State>> allInStates = new HashMap<>();
         Map<State, Boolean> resolved = new HashMap<>();
         State nowState = null;

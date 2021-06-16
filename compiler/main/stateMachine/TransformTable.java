@@ -87,6 +87,15 @@ public class TransformTable {
     }
 
     public State getStartState() {
+        // 寻找新的start state
+        if (!trans.containsKey(startState) || trans.get(startState).size() == 0) {
+            State[] starts = trans.keySet().stream().filter(State::isStart).toArray(State[]::new);
+            if (starts.length > 1)
+                System.out.println("找到不止一个 start state");
+            else if (starts.length == 0)
+                System.out.println("cant find any start state");
+            else startState = starts[0];
+        }
         return startState;
     }
 
@@ -98,7 +107,14 @@ public class TransformTable {
         Map<String, Set<State>> inputs = trans.get(state);
         if (inputs == null)
             trans.put(state, inputToStates);
-        else
-            trans.get(state).putAll(inputs);
+        else {
+            for (String input : inputToStates.keySet()) {
+                if (inputs.containsKey(input)) {
+                    inputs.get(input).addAll(inputToStates.get(input));
+                } else {
+                    inputs.put(input, new HashSet<>(inputToStates.get(input)));
+                }
+            }
+        }
     }
 }

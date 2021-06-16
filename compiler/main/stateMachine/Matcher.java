@@ -105,7 +105,7 @@ public class Matcher {
                 groups.remove(integer);
         }
 
-        return true;
+        return crossEnd;
     }
 
     // 获取当前识别的结尾

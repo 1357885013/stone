@@ -7,8 +7,8 @@ import java.util.Set;
 public class State {
     private int index;
     private Set<Integer> groupIndex;
-    private boolean isEnd;
-    private boolean isStart;
+    private boolean isEnd=false;
+    private boolean isStart=false;
 
     public State(int index, State state) {
         this.index = index;
@@ -33,7 +33,7 @@ public class State {
 
     @Override
     public String toString() {
-        return (isStart ? "Start" : "") + (isEnd ? "End" : "") + "S" + index;
+        return (isStart ? "Start-" : "") + (isEnd ? "End-" : "") + "S" + index;
     }
 
     public State() {
@@ -51,6 +51,7 @@ public class State {
     }
 
 
+    // 多个状态合并
     public static State build(int index, Set<State> states) {
         State state = new State();
         state.setIndex(index);
@@ -67,7 +68,8 @@ public class State {
     public static State build(int index, State inState, Set<State> states) {
         State state = new State();
         state.setIndex(index);
-        state.getGroupIndex().addAll(inState.getGroupIndex());
+        states.add(inState);
+//        state.getGroupIndex().addAll(inState.getGroupIndex());
         for (State s : states) {
             state.getGroupIndex().addAll(s.getGroupIndex());
             if (s.isStart)
