@@ -11,12 +11,6 @@ public class Test {
             "(\\{|\\}|\\[|\\]|\\(|\\)|\\+|\\-|\\*|/|=|&|\\||!|:|;|,|<|>|'|\\\"|\\.)|(\\s)";    //匹配结果会存进group里，并用标号区分，（1（2）（3 num）（（4 string））token ）  具体在addToken()里
     private static Pattern pattern = Pattern.compile(regexPat);
 
-    // todo: {0,4}  // 要加上匹配次数么, 匹配几次进入下一状态
-    // : .* 中 . 的匹配,  ; 把点的输出 复制到别的input状态上
-    // : [^ ]
-    // todo: $ ^
-    // todo: 贪婪模式
-    // todo: 反向预查
     public static void main(String[] args) {
         String input = "+= ++ -- = * 1000 sadf123 /*123123*/";
         Matcher matcher = pattern.matcher(input);

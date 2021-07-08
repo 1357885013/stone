@@ -1,9 +1,6 @@
 package main.stateMachine;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Matcher {
 
@@ -23,7 +20,8 @@ public class Matcher {
         this.input = input;
         this.trans = trans;
     }
-    public Integer[] getGroups(){
+
+    public Integer[] getGroups() {
         return groups.keySet().toArray(new Integer[]{});
     }
 
@@ -62,18 +60,32 @@ public class Matcher {
             temp = null;
             input = this.input.charAt(loc);
             Set<State> nextStateSet = trans.get(nowState, String.valueOf(input));
-            if (trans.get(nowState) != null) {
-                if (nextStateSet == null)
-                    //找  .   [^..]  ^ $
-                    for (String in : trans.get(nowState).keySet()) {
-                        if (in.equals("_."))
-                            temp = trans.get(nowState, in);
-                        if (in.charAt(0) == '^' && in.charAt(1) != input) {
-                            nextStateSet = trans.get(nowState, in);
-                            break;
-                        }
+            LinkedHashMap<String, Set<State>> inputs = trans.get(nowState);
+
+            if (nextStateSet == null && trans.get(nowState) != null) {
+
+                for (String input1 : inputs.keySet()) {
+                    if ((input1.charAt(0) == '^' && (!input1.substring(1).contains(String.valueOf(input)))) || input1.equals("_.")) {
+                        nextStateSet = trans.get(nowState, input1);
+                        break;
                     }
-                if (nextStateSet == null) nextStateSet = temp;
+                }
+
+
+//                int expectLength = 0;
+//                //找  .   [^abc]  ^ $
+//                for (String in : trans.get(nowState).keySet()) {
+//                    if (in.equals("_."))
+//                        temp = trans.get(nowState, in);
+//                    // todo: 可能 有的单个比别的两个合起来都长
+//                    if (in.charAt(0) == '^' && !in.substring(1).contains(String.valueOf(input))) {
+//                        if (in.length() > expectLength) {
+//                            nextStateSet = trans.get(nowState, in);
+//                            expectLength = in.length();
+//                        }
+//                    }
+//                }
+//                if (nextStateSet == null) nextStateSet = temp;
             }
 
             // does not have next state

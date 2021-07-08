@@ -3,36 +3,36 @@ package main.stateMachine;
 import java.util.*;
 
 public class TransformTable {
-    public Map<State, Map<String, Set<State>>> trans = new HashMap<>();
+    public Map<State, LinkedHashMap<String, Set<State>>> trans = new HashMap<>();
     private List<String[]> waitForDelete;
     private State startState;
 
     public TransformTable(String regex) {
         startState = State.start();
-        trans.put(startState, new HashMap<>());
-        trans.put(State.end(), new HashMap<>());
+        trans.put(startState, new LinkedHashMap<>());
+        trans.put(State.end(), new LinkedHashMap<>());
         add(State.start(), regex, State.end());
         waitForDelete = new ArrayList<>();
     }
 
     public Map<String, Set<State>> add(State inState) {
-        return trans.computeIfAbsent(inState, v -> new HashMap<>());
+        return trans.computeIfAbsent(inState, v -> new LinkedHashMap<>());
     }
 
     public Set<State> set(State inState, String input, Set<State> toStates) {
-        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new HashMap<>());
+        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new LinkedHashMap<>());
         return inputs.put(input, toStates);
     }
 
     public Set<State> add(State inState, String input, Set<State> toStates) {
-        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new HashMap<>());
+        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new LinkedHashMap<>());
         inputs.computeIfAbsent(input, v -> new HashSet<>()).addAll(toStates);
         return inputs.get(input);
     }
 
 
     public boolean add(State inState, String input, State toState) {
-        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new HashMap<>());
+        Map<String, Set<State>> inputs = trans.computeIfAbsent(inState, v -> new LinkedHashMap<>());
         Set<State> toStates = inputs.computeIfAbsent(input, v -> new HashSet<>());
         if (toStates.contains(toState))
             return false;
@@ -45,7 +45,7 @@ public class TransformTable {
         return trans.keySet();
     }
 
-    public Map<String, Set<State>> get(State inState) {
+    public LinkedHashMap<String, Set<State>> get(State inState) {
         return trans.get(inState);
     }
 
@@ -59,7 +59,7 @@ public class TransformTable {
         return trans.get(inState).remove(input);
     }
 
-    public Map<String, Set<State>> delete(State inState) {
+    public LinkedHashMap<String, Set<State>> delete(State inState) {
         return trans.remove(inState);
     }
 
@@ -103,7 +103,7 @@ public class TransformTable {
         this.startState = startState;
     }
 
-    public void add(State state, Map<String, Set<State>> inputToStates) {
+    public void add(State state, LinkedHashMap<String, Set<State>> inputToStates) {
         Map<String, Set<State>> inputs = trans.get(state);
         if (inputs == null)
             trans.put(state, inputToStates);

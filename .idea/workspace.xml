@@ -1,61 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0da420f3-1d8b-47ff-abbb-7f5430f43fee" name="默认更改列表" comment="默认更改列表">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/Formula.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/GrammerTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/Option.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/ParseTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/StateTransform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/MatchGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Matcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/main/stateMachine/TransformTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/showFA.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/showTree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compiler/vue.js" afterDir="false" />
+    <list default="true" id="1abd86be-edd7-4e7a-89e5-964957fd7720" name="Default Changelist" comment="根据测试结果修改了许多小bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$NegativeEx.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$NegativeEx.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/BasicParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/BasicParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$IdToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Lexer$IdToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$NumToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Lexer$NumToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$StrToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Lexer$StrToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Lexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$AToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$AToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Element.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Expr.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Expr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Factory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Factory$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Factory$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Factory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$IdToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$IdToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Leaf.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Leaf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$NumToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$NumToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Operators.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Operators.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$OrTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$OrTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Precedence.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Precedence.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Repeat.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Repeat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Skip.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Skip.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$StrToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$StrToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser$Tree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTLeaf.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/ASTLeaf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTList.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/ASTList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/ASTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Arguments.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/Arguments.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ArrayLiteral.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/ArrayLiteral.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stone/ast/BinaryExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stone/ast/BinaryExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stone/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stone/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stone/ast/BinaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stone/ast/BinaryExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone-lang.iml" beforeDir="false" afterPath="$PROJECT_DIR$/stone-lang.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler/main/stateMachine/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Matcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler/main/stateMachine/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/compiler/main/stateMachine/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler/main/stateMachine/TestAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/compiler/main/stateMachine/TestAll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler/main/stateMachine/TransformTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/compiler/main/stateMachine/TransformTable.java" afterDir="false" />
+    </list>
+    <list id="8c785336-91d8-427d-b6f3-28b2b64766fe" name="ignore" comment="">
+      <change beforePath="$PROJECT_DIR$/bin/chap10/ArrayEvaluator$ArrayLitEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap10/ArrayEvaluator$ArrayRefEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap10/ArrayEvaluator$AssignEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap10/ArrayEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap10/ArrayRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/ArrayEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$ASTListEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$ASTreeOptEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$BinaryEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$DefStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$EnvEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$FunEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$NameEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer$ParamsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/EnvOptimizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/OptFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/ResizableArrayEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/Symbols$Location.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap11/Symbols.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/InlineCache$AssignEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/InlineCache$DotEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/InlineCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/InlineRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/MemberSymbols.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$AssignEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$ClassBodyEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$ClassStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$DefStmntEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$DotEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer$NameEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/ObjOptimizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/OptClassInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/OptMethod.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/OptStoneObject$AccessException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/OptStoneObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap12/SymbolThis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/Code.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/HeapMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/Opcode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/StoneVM.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/StoneVMEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$ASTListEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$ASTreeVmEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$ArgumentsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$BinaryEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$BlockEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$DefStmntVmEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$EnvEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$IfEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$NameEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$NegativeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$NumberEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$ParamsEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$PrimaryVmEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$StringEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator$WhileEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap13/VmRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferFuncTypes$DefStmntEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferFuncTypes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferTypes$TypeEnvEx$Equation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferTypes$TypeEnvEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferTypes$TypeInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferTypes$UnknownTypeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/InferTypes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/JavaFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/JavaLoader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/JavaLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/JavaRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/Runtime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$ASTreeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$ArgumentsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$ArrayEnvEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$BinaryEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$BlockEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$DefStmntEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$EnvEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$IfEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$NameEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$NegativeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$NumberEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$PostfixEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$PrimaryEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$StringEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$VarStmntEx3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava$WhileEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/ToJava.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$ASTreeTypeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$ArgumentsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$BinaryEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$BlockEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$DefStmntEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$IfEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$NameEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$NegativeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$NumberEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$ParamListEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$PostfixEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$PrimaryEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$StringEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$VarStmntEx2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker$WhileEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo$FunctionType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo$UnknownType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypeInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedEvaluator$DefStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedEvaluator$ParamListEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedEvaluator$VarStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedNatives.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/TypedRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/java/currentTime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/java/length.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/java/print.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/java/read.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap14/java/toInt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap3/FileLexerRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap3/LexerRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap5/ParserRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$ASTLeafEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$ASTListEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$ASTreeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$BinaryEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$BlockEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$IfEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$NameEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$NegativeEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$NumberEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$StringEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator$WhileEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/BasicInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/Environment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap6/Runner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/ClosureEvaluator$FunEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/ClosureEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/ClosureInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/ClosureRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$ArgumentsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$DefStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$EnvEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$ParamsEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$PostfixEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator$PrimaryEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/FuncRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/Function.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap7/NestedEnv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/NativeEvaluator$NativeArgEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/NativeEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/NativeFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/NativeInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/NativeRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap8/Natives.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassEvaluator$AssignEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassEvaluator$ClassBodyEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassEvaluator$ClassStmntEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassEvaluator$DotEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassEvaluator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/ClassRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/StoneObject$AccessException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chap9/StoneObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chapA/Lexer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chapB/ExprParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chapB/OpPrecedenceParser$Precedence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chapB/OpPrecedenceParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ArrayParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/BasicParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ClassParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ClosureParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/CodeDialog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/FuncParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$IdToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$NumToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer$StrToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Lexer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ParseException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$AToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Element.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Expr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Factory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$IdToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Leaf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$NumToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Operators.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$OrTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Precedence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Repeat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Skip.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$StrToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser$Tree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/StoneException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Token$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/TypedParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTLeaf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ASTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Arguments.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ArrayLiteral.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ArrayRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/BinaryExpr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/BlockStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ClassBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ClassStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/DefStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Dot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Fun.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/IfStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Name.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/NegativeExpr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/NullStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/NumberLiteral.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/ParameterList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/Postfix.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/PrimaryExpr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/StringLiteral.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/TypeTag.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/VarStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/ast/WhileStmnt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stone/code.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,20 +391,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestParse">
-    <configuration name="FileLexerRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chap3.FileLexerRunner" />
-      <module name="stone-lang" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chap3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.TestAll">
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Parser" />
       <module name="stone-lang" />
@@ -247,6 +431,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestAll" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.stateMachine.TestAll" />
+      <module name="stone-lang" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.stateMachine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Util" />
       <module name="stone-lang" />
@@ -267,11 +464,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestParse" />
+        <item itemvalue="Application.TestAll" />
         <item itemvalue="Application.Pattern" />
         <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Util" />
-        <item itemvalue="Application.FileLexerRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -281,7 +477,8 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0da420f3-1d8b-47ff-abbb-7f5430f43fee" name="默认更改列表" comment="" />
+      <changelist id="8c785336-91d8-427d-b6f3-28b2b64766fe" name="ignore" comment="" />
+      <changelist id="1abd86be-edd7-4e7a-89e5-964957fd7720" name="Default Changelist" comment="实现了 测试" />
       <created>1565077337239</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -291,7 +488,10 @@
       <workItem from="1621129173185" duration="4267000" />
       <workItem from="1622644143436" duration="6168000" />
       <workItem from="1622722895586" duration="1709000" />
-      <workItem from="1622804337254" duration="166772000" />
+      <workItem from="1622804337254" duration="190071000" />
+      <workItem from="1623741659929" duration="741000" />
+      <workItem from="1623747267183" duration="871000" />
+      <workItem from="1623767783798" duration="25378000" />
     </task>
     <task id="LOCAL-00001" summary="默认更改列表">
       <created>1621130352080</created>
@@ -300,7 +500,35 @@
       <option name="project" value="LOCAL" />
       <updated>1621130352080</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="自己实现的 正则&#10;正要实现 .  和 [^abc]  写了一半了">
+      <created>1623310088139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623310088139</updated>
+    </task>
+    <task id="LOCAL-00003" summary="实现了 .  和 [^abc]">
+      <created>1623331429768</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1623331429768</updated>
+    </task>
+    <task id="LOCAL-00004" summary="实现了 测试">
+      <created>1623378260786</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623378260786</updated>
+    </task>
+    <task id="LOCAL-00005" summary="根据测试结果修改了许多小bug">
+      <created>1623812624285</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623812624285</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -356,7 +584,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="默认更改列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="默认更改列表" />
+    <MESSAGE value="自己实现的 正则&#10;正要实现 .  和 [^abc]  写了一半了" />
+    <MESSAGE value="实现了 .  和 [^abc]" />
+    <MESSAGE value="实现了 测试" />
+    <MESSAGE value="根据测试结果修改了许多小bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="根据测试结果修改了许多小bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -368,33 +600,18 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java</url>
-          <line>185</line>
+          <line>314</line>
           <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Test.java</url>
-          <line>23</line>
+          <line>25</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Matcher.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/compiler/main/stateMachine/Pattern.java</url>
-          <line>194</line>
-          <option name="timeStamp" value="92" />
+          <line>245</line>
+          <option name="timeStamp" value="95" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.util.ConcurrentModificationException" package="java.util" />
@@ -404,8 +621,17 @@
           <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="88" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="103" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="main.stateMachine.TransformTable" memberName="trans" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="inputO" />

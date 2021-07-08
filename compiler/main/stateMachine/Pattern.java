@@ -1,6 +1,8 @@
 package main.stateMachine;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Pattern {
     //state change table : state - > chat - > set(state)
@@ -23,7 +25,9 @@ public class Pattern {
 //        pattern = Pattern.compile("([az][az09]*)|(d+)");
 //        pattern = Pattern.compile("b*?ca");
         // pattern = Pattern.compile("b*?ca", true);
-        pattern = Pattern.compile("[^abc]", true);
+//        pattern = Pattern.compile("[^abc]", true);
+        pattern = Pattern.compile(".+bc", true);
+        //       pattern = Pattern.compile("([^abc]1)|([^ade]2)|([^fg]3)|([^ghijklmn]4)", true);
 //        pattern = Pattern.compile("ab*?c");
 //        pattern = Pattern.compile("ab*(abc)|(ade)");
 //        pattern = Pattern.compile("cab*?");
@@ -163,28 +167,67 @@ public class Pattern {
                 for (State toState : trans.get(state, input)) {
                     HashSet<State> states = allInStates.get(toState);
                     // 结束状态只有输入没有输出
-                    if (states != null)
+                    if (states != null && !toState.equals(state))
                         states.add(state);
                 }
             }
         }
 
+        Set<State> all = null;
+        Set<String> excepts = new HashSet<>();
         do {
-            if (trans.get(nowState) != null)
+            if (trans.get(nowState) != null) {
+                all = null;
+                excepts.clear();
                 for (String input : trans.get(nowState).keySet()) {
                     // 是欠处理的边不?
-                    if (input.equals("_.") || input.charAt(0) == '^') {
+                    // 是 .
+                    if (input.equals("_.")) {
+                        all = trans.get(nowState, input);
+                        // 是 ^
+                    } else if (input.charAt(0) == '^') {
+                        excepts.add(input.substring(1));
                         for (String rightInput : trans.get(nowState).keySet()) {
-                            // 如果相交
-                            if (isIntersect(input, rightInput))
-                                // 全部挨个转移
-                                for (State leftState : trans.get(nowState, input)) {
-                                    // 是否转移成功
-                                    trans.add(nowState, rightInput, leftState);
-                                }
+                            // 不是本身 且 不是 .  不是 ^
+                            if (!rightInput.equals(input) && rightInput.charAt(0) != '^' && !rightInput.equals("_."))
+                                // 如果相交
+                                if (!input.substring(1).contains(rightInput))
+                                    // 全部挨个转移
+                                    for (State leftState : trans.get(nowState, input)) {
+                                        // 是否转移成功
+                                        trans.add(nowState, rightInput, leftState);
+                                    }
                         }
                     }
                 }
+                // 处理 所有 ^,
+                // 计算新的 总的
+                if (excepts.size() > 1) {
+
+                    State finalNowState = nowState;
+                    String expectAll = "^" + excepts.stream().flatMap(a -> Stream.of(a.split(""))).distinct().sorted().collect(Collectors.joining(""));
+                    trans.add(nowState, expectAll, excepts.stream().flatMap(a -> (trans.get(finalNowState, "^" + a).stream())).collect(Collectors.toSet()));
+                    for (String except : excepts) {
+                        String key = "^" + excepts.stream().filter(a -> !a.equals(except)).flatMap(a -> Stream.of(a.split(""))).distinct().sorted().collect(Collectors.joining(""));
+                        Set<State> value = excepts.stream().filter(a -> !a.equals(except)).flatMap(a -> (trans.get(finalNowState, "^" + a).stream())).collect(Collectors.toSet());
+                        trans.add(nowState, key, value);
+                    }
+                    for (String except : excepts) {
+                        // 删除后重新添加,让它排在后面
+                        trans.add(nowState, "^" + except, trans.delete(nowState, "^" + except));
+                    }
+                }
+                // 处理 .
+                Set<State> allState = trans.get(nowState, "_.");
+                if (all != null) {
+                    for (String input : new HashSet<>(trans.get(nowState).keySet())) {
+                        if (!input.equals("_."))
+                            trans.add(nowState, input, allState);
+                    }
+                    // 删除后重新添加,让它排在后面
+                    trans.add(nowState, "_.", trans.delete(nowState, "_."));
+                }
+            }
             resolved.put(nowState, true);
             State temp = null;
             //删除allInStates的同时 寻找下一个所有边都处理的状态
@@ -232,8 +275,11 @@ public class Pattern {
                             cache.put(oldStateKey, newState);
                         }
                         // 将这多个状态替换成新状态
-                        trans.delete(inState, input);
-                        trans.add(inState, input, newState);
+                        HashSet<State> newStates = new HashSet<>();
+                        newStates.add(newState);
+                        trans.get(inState).replace(input, newStates);
+//                        trans.delete(inState, input);
+//                        trans.add(inState, input, newState);
 
                         // 复制旧状态上的输出到新状态上
                         for (State oldState : new HashSet<>(oldStates)) {
@@ -513,9 +559,14 @@ public class Pattern {
                                 end = false;
                             } else if (input.charAt(0) == '[' && input.charAt(input.length() - 1) == ']') {
                                 boolean except = input.charAt(1) == '^';
+                                Set<State> toStates = trans.get(inState, input);
                                 Set<String> each = resolveMBrace(input.substring(except ? 2 : 1, input.length() - 1));
-                                for (String s : each) {
-                                    trans.add(inState, except ? "^" + s : s, new HashSet<>(trans.get(inState, input)));
+                                if (except) {
+                                    trans.add(inState, "^" + each.stream().sorted().collect(Collectors.joining()), new HashSet<>(toStates));
+                                } else {
+                                    for (String s : each) {
+                                        trans.add(inState, s, new HashSet<>(toStates));
+                                    }
                                 }
                                 trans.delete(inState, input);
                                 end = false;
@@ -536,6 +587,14 @@ public class Pattern {
     }
 
     private boolean canSplit(String regex) {
+        // todo: _. 无法匹配
+        //  _.
+        // _@
+        // ^abc
+        // \^abc
+        // _@
+
+        if (regex.charAt(0) == '^') return false;
         if (regex.length() > 2) return true;
         if (regex.length() == 1) return false;
         return !((regex.charAt(0) == '_' || regex.charAt(0) == '^' || regex.charAt(0) == '\\'));
